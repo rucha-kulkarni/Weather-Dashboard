@@ -65,7 +65,7 @@ body {
     width: 80%;
     /* border: 1px solid red; */
     display: flex;
-    gap: 50px;
+    gap: 45px;
     flex-wrap: wrap;
 }
 .card{
@@ -93,9 +93,7 @@ body {
 .text .place {
     font-weight: 400;
 }
-/* .text .pc > div {
-    border: 1px solid red;
-} */
+
 .text .pc {
     display: flex;
     justify-content: space-between;
@@ -111,4 +109,9 @@ body {
     position: absolute;
     bottom: 10px;
     right: 0px;
+}
+@media screen and (min-with:500px){
+    #weather-cards {
+        flex-direction: column;
+    }
 }
