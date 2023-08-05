@@ -110,8 +110,9 @@ body {
     bottom: 10px;
     right: 0px;
 }
-@media screen and (min-with:500px){
+@media screen and (max-width:500px){
     #weather-cards {
-        flex-direction: column;
+        margin: 80px auto;
+        width: 90%;
     }
 }

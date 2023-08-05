@@ -6,16 +6,18 @@ const addButton = document.getElementById("btn");
 const baseUrl = `https://api.openweathermap.org/data/2.5`;
 
 const cityName = [];
-const weatherCondition = [];
 async function getCity(city = "pune") {
     try{
         let url = `${baseUrl}/weather?q=${city}&appid=${api_key}&units=metric`;
         const response = await fetch(url, {method: "GET"});
         const data = await response.json();
         if (data.cod === 200) {
-            cityName.push[data.name.toLowerCase()];
-            weatherCondition.push[data.weather[0].main];
-            console.log(data);
+            //cityName.push(data.name.toLowerCase());
+            console.log(cityName);
+            cityName.push({cname:data.name.toLowerCase(), temp:data.main.temp});
+            // let sortedCities = cityName.sort(
+            //     (c1, c2) => (c1.main.temp > c2.main.temp) ? 1 : (c1.main.temp < c2.main.temp) ? -1 : 0);
+            //     console.log(sortedCities);
             addDataOnToUI(data);
         } else {
             console.log("City not found");
@@ -28,6 +30,7 @@ async function getCity(city = "pune") {
 
 const weatherCards = document.getElementById('weather-cards');
 function addDataOnToUI(data) {
+
     let iconCode = data.weather[0].icon;
     let iconUrl = `http://openweathermap.org/img/w/${iconCode}.png`;
     const cardContainer = document.createElement('div');
@@ -50,8 +53,8 @@ function addDataOnToUI(data) {
 }
 
 function checkDuplicateCity(city){
-    for(let i=0; i<cityName.length; i++){
-        if(cityName[i] === city){
+    for(let i=0;i<cityName.length;i++){
+        if(cityName[i].cname.includes(city)){
             return true;
         }
     }
@@ -63,7 +66,17 @@ addButton.addEventListener("click", () => {
         return;
     }
     getCity(city);
-})
+});
+
+searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        let city = searchInput.value.trim();
+        if (city === "" || checkDuplicateCity(city)) {
+            return;
+        }
+        getCity(city);
+    }
+});
 getCity();
 
 
