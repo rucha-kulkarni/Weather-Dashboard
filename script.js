@@ -1,5 +1,4 @@
 
-
 const api_key = "271aeddd15047558eaa146aacbd858b0";
 const searchInput = document.getElementById("search-input");
 const addButton = document.getElementById("btn");
@@ -12,13 +11,10 @@ async function getCity(city = "pune") {
         const response = await fetch(url, {method: "GET"});
         const data = await response.json();
         if (data.cod === 200) {
-            //cityName.push(data.name.toLowerCase());
             console.log(cityName);
             cityName.push({cname:data.name.toLowerCase(), temp:data.main.temp});
-            // let sortedCities = cityName.sort(
-            //     (c1, c2) => (c1.main.temp > c2.main.temp) ? 1 : (c1.main.temp < c2.main.temp) ? -1 : 0);
-            //     console.log(sortedCities);
             addDataOnToUI(data);
+            searchInput.value = "";
         } else {
             console.log("City not found");
           }
@@ -49,7 +45,7 @@ function addDataOnToUI(data) {
         </div>
         </div>`;
 
-    weatherCards.appendChild(cardContainer);
+    weatherCards.insertBefore(cardContainer, weatherCards.firstChild);
 }
 
 function checkDuplicateCity(city){

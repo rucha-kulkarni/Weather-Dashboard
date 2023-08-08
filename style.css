@@ -5,7 +5,8 @@
     padding: 0;
 }
 body {
-    background-color:  #2B2F53;
+    /* background-color:  #2B2F53; */
+    background-image: linear-gradient(#171e5a, #2d1a5f) ;
 }
 .body{
     height: 100vh;
@@ -32,7 +33,7 @@ body {
     width: 40%;
     height: 50px;
     overflow-x: hidden;
-    background-image: linear-gradient(  #2d325a, #1b203f);
+    background-image: linear-gradient(  #353d75, #232277);
     align-items: center;
     border-radius: 10px;
 }
@@ -52,7 +53,7 @@ body {
     padding-left: 10px;
 }
 .body button{
-    background-color: #403571;
+    background-color: #431b83;
     border: none;
     border-radius: 5px;
     color: white;
@@ -63,14 +64,12 @@ body {
 #weather-cards {
     margin: 80px auto;
     width: 80%;
-    /* border: 1px solid red; */
     display: flex;
     gap: 45px;
     flex-wrap: wrap;
 }
 .card{
     position: relative;
-    /* border: 1px solid green; */
 }
 .text {
     position: absolute;
@@ -107,7 +106,7 @@ body {
 }
 .card .fimg {
     position: absolute;
-    bottom: 10px;
+    bottom: 12px;
     right: 0px;
 }
 @media screen and (max-width:500px){
