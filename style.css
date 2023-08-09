@@ -1,27 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800&display=swap');
 
-*{
+* {
     margin: 0;
-    padding: 0;
+    padding: 0;   
 }
 body {
-    /* background-color:  #2B2F53; */
-    background-image: linear-gradient(#171e5a, #2d1a5f) ;
+    
+    background-image: url('/Big/weatherDoodle.png');
+    background-size: 380px;
+    background-repeat: repeat;
+    background-attachment: fixed;
 }
-.body{
-    height: 100vh;
+.body {
     font-family: 'Inter', sans-serif;
+    position: relative;
 }   
+.body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:#2e2d7042;
+    z-index: -1;
+} 
 .input {
     display: flex;
     justify-content: center;
     gap: 20px;
     align-items: center;
 }
-.body > p {
-    color: white;
+.heading {
+    background-color: rgba(18, 3, 80, 0.938);
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    margin-bottom: 50px;
+}
+.body .heading > p {
+    color: rgb(255, 255, 255);
     font-size: 35px;
-    padding: 30px;
+    padding: 10px;
     text-align: center;
     font-weight: 700;
 }
@@ -31,9 +51,9 @@ body {
     border-color:rgba(9, 13, 56, 0.082);
     display: flex;
     width: 40%;
-    height: 50px;
+    height: 60px;
     overflow-x: hidden;
-    background-image: linear-gradient(  #353d75, #232277);
+    background-image: linear-gradient(  #2a3379f3, #100d69e7);
     align-items: center;
     border-radius: 10px;
 }
@@ -43,17 +63,16 @@ body {
     color: white;
     background-color: transparent;
     padding-left: 20px;
-    
 }
-.search-container > input:focus{ 
+.search-container > input:focus { 
     outline: none;
 }
 .material-icons {
-    color: grey;
+    color: lightgrey;
     padding-left: 10px;
 }
-.body button{
-    background-color: #431b83;
+.body button {
+    background-color: #431b83f3;
     border: none;
     border-radius: 5px;
     color: white;
@@ -62,56 +81,77 @@ body {
     padding: 18px 30px;
 }
 #weather-cards {
-    margin: 80px auto;
+    margin: 50px auto;
+    padding: 30px;
     width: 80%;
+    display: grid;
+    gap: 3%;
+    grid-template-columns: repeat(4, 1fr);
+}
+.cards {
+    padding: 20px;
+    background-color:rgb(240, 255, 255);
+    border-radius: 20px;
+    box-shadow: 2px 3px 6px rgba(36, 25, 138, 0.534) ;
+}
+.temp-details {
     display: flex;
-    gap: 45px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 5px;
 }
-.card{
-    position: relative;
+.temp-details p {
+    color:darkslateblue;
+    text-align: center;
 }
-.text {
-    position: absolute;
-    top: 40px;
-    left: 20px;
-    color:white; 
-    width: 90%;
+.desc {
+    font-weight: 500;
+    font-size: 18px;
 }
-.text .temp {
-    margin-bottom: 10px;
+.temp-details > .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.temp-details .temp {
     font-size: 50px;
-}
-
-.text .high-low {
-    font-weight: 300;
-    font-size: 15px;
-    margin-bottom: 5px;
-    color: rgb(196, 195, 195);
-}
-.text .place {
-    font-weight: 400;
-}
-
-.text .pc {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    color: rgb(101, 28, 170);
 }
-.text .pc>.condition {
-    font-weight: 300;
-    font-size: 14px;
+.min-max {
+    font-size: 15px;
+    font-weight: 400;
+    margin: 10px;
 }
-.card .bgimg {
-    position: relative;
+.temp-details .material-icons {
+    padding-left: 3px;
+    color: #431b83;
+    font-size: 18px
 }
-.card .fimg {
-    position: absolute;
-    bottom: 12px;
-    right: 0px;
+.icon {
+    margin: 5px 0;
+    border-radius: 60px;
+    background-color: #005eec11;
 }
-@media screen and (max-width:500px){
+
+@media screen and (max-width:500px) {
     #weather-cards {
-        margin: 80px auto;
-        width: 90%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+@media screen and (min-width:500px) and (max-width:700px) {
+    #weather-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (min-width:700px) and (max-width:1090px) {
+    #weather-cards {
+        grid-template-columns: repeat(3, 33.33%);
+    }
+}
+@media screen and (min-width:1090px) {
+    #weather-cards {
+        grid-template-columns: repeat(4, 1fr);
     }
 }

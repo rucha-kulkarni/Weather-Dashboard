@@ -1,18 +1,21 @@
-
 const api_key = "271aeddd15047558eaa146aacbd858b0";
-const searchInput = document.getElementById("search-input");
-const addButton = document.getElementById("btn");
 const baseUrl = `https://api.openweathermap.org/data/2.5`;
 
+const searchInput = document.getElementById("search-input");
+const addButton = document.getElementById("btn");
+const weatherCards = document.getElementById('weather-cards');
 const cityName = [];
+
+//Function to fetch the city weather details
 async function getCity(city = "pune") {
     try{
         let url = `${baseUrl}/weather?q=${city}&appid=${api_key}&units=metric`;
         const response = await fetch(url, {method: "GET"});
         const data = await response.json();
         if (data.cod === 200) {
-            console.log(cityName);
+            // console.log(cityName);
             cityName.push({cname:data.name.toLowerCase(), temp:data.main.temp});
+            // console.log(data);
             addDataOnToUI(data);
             searchInput.value = "";
         } else {
@@ -24,30 +27,32 @@ async function getCity(city = "pune") {
     
 }
 
-const weatherCards = document.getElementById('weather-cards');
+//Function to display data on to UI
 function addDataOnToUI(data) {
 
     let iconCode = data.weather[0].icon;
     let iconUrl = `http://openweathermap.org/img/w/${iconCode}.png`;
+    let description = data.weather[0].description;
     const cardContainer = document.createElement('div');
-    cardContainer.className ="card";
+    cardContainer.className ="cards";
     cardContainer.innerHTML +=`
-        <img class="bgimg" src="./Big/Rectangle 1.png" alt="">
-        
-        <img class="fimg" src="${iconUrl}" width="190px" alt="Weather icon">
-        <div class="text">
-            <p class="temp">${data.main.temp}°</p>
-            <p class="high-low">H: ${data.main.temp_max}°  L: ${data.main.temp_min}°</p>
-            <div class="pc">
-                <p class="place">${data.name}, ${data.sys.country}</p>
-                <p class="condition">${data.weather[0].main}</p>
-            </div>
+
+    <div class="temp-details">
+        <p class="temp"> ${Math.floor(data.main.temp)}°</p> 
+        <p class="desc"> ${description.charAt(0).toUpperCase() + description.slice(1).toLowerCase()}</p>
+        <div class="icon">
+            <img src=" ${iconUrl}" width="80px" alt="">
         </div>
-        </div>`;
+        <p class="condition"> ${data.weather[0].main}</p>
+        <p class="min-max"> <b> max:</b> ${Math.floor(data.main.temp_min)}° | <b>min:</b> ${Math.floor(data.main.temp_max)}° </p>
+        <p class="wind"> ${(3.6*data.wind.speed).toFixed(2)} km/h <span class="material-icons"> air </span> </p>
+        <p class="place"> ${data.name}, ${data.sys.country}<span class="material-icons"> location_on </span> </p> 
+    </div>   `;
 
     weatherCards.insertBefore(cardContainer, weatherCards.firstChild);
 }
 
+//Function to check the duplicate search
 function checkDuplicateCity(city){
     for(let i=0;i<cityName.length;i++){
         if(cityName[i].cname.includes(city)){
@@ -56,6 +61,8 @@ function checkDuplicateCity(city){
     }
     return false;
 }
+
+// search by click event
 addButton.addEventListener("click", () => {
     let city = searchInput.value.toLowerCase().trim();
     if(city === "" || checkDuplicateCity(city)){
@@ -64,6 +71,7 @@ addButton.addEventListener("click", () => {
     getCity(city);
 });
 
+// search by keydown event 
 searchInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         let city = searchInput.value.trim();
