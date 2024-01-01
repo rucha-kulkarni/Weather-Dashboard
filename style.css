@@ -1,157 +1,175 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;   
+  margin: 0;
+  padding: 0;
 }
 body {
-    
-    background-image: url('/Big/weatherDoodle.png');
-    background-size: 380px;
-    background-repeat: repeat;
-    background-attachment: fixed;
+  background-image: linear-gradient(
+    rgba(253, 127, 115, 0.9),
+    rgba(109, 214, 222, 0.9)
+  );
 }
 .body {
-    font-family: 'Inter', sans-serif;
-    position: relative;
-}   
-.body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color:#2e2d7042;
-    z-index: -1;
-} 
+  font-family: "Inter", sans-serif;
+  position: relative;
+}
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(
+    rgba(253, 127, 115, 0.9),
+    rgba(109, 214, 222, 0.9)
+  );
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3498db;
+  border-radius: 5px;
+}
 .input {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
 }
 .heading {
-    background-color: rgba(18, 3, 80, 0.938);
-    padding: 10px;
-    position: sticky;
-    top: 0;
-    margin-bottom: 50px;
+  font-family: "Arial", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin: 20px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .body .heading > p {
-    color: rgb(255, 255, 255);
-    font-size: 35px;
-    padding: 10px;
-    text-align: center;
-    font-weight: 700;
+  color: #f9f9f9;
+  font-size: 35px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 700;
 }
 .search-container {
-    border-style: solid;
-    border-width: 3px 1 0 1; 
-    border-color:rgba(9, 13, 56, 0.082);
-    display: flex;
-    width: 40%;
-    height: 60px;
-    overflow-x: hidden;
-    background-image: linear-gradient(  #2a3379f3, #100d69e7);
-    align-items: center;
-    border-radius: 10px;
+  border-style: solid;
+  border-width: 3px 1 0 1;
+  border-color: rgba(9, 13, 56, 0.062);
+  display: flex;
+  width: 40%;
+  height: 60px;
+  overflow-x: hidden;
+  background-image: linear-gradient(
+    rgba(42, 51, 121, 0.95),
+    rgba(16, 13, 105, 0.85)
+  );
+  align-items: center;
+  border-radius: 10px;
 }
 .search-container > input {
-    border: none;
-    flex-grow: 1;
-    color: white;
-    background-color: transparent;
-    padding-left: 20px;
+  border: none;
+  flex-grow: 1;
+  color: white;
+  background-color: transparent;
+  padding-left: 20px;
 }
-.search-container > input:focus { 
-    outline: none;
+.search-container > input:focus {
+  outline: none;
 }
 .material-icons {
-    color: lightgrey;
-    padding-left: 10px;
+  color: #f9f9f9;
+  padding-left: 10px;
 }
 .body button {
-    background-color: #431b83f3;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 18px 30px;
+  background-color: #431b83f8;
+  border: none;
+  border-radius: 5px;
+  color: #f9f9f9;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 22px 30px;
+}
+.body button:hover {
+  background-color: #24025cf8;
 }
 #weather-cards {
-    margin: 50px auto;
-    padding: 30px;
-    width: 80%;
-    display: grid;
-    gap: 3%;
-    grid-template-columns: repeat(4, 1fr);
+  margin: 50px auto;
+  padding: 30px;
+  width: 80%;
+  display: grid;
+  gap: 3%;
+  grid-template-columns: repeat(4, 1fr);
 }
 .cards {
-    padding: 20px;
-    background-color:rgb(240, 255, 255);
-    border-radius: 20px;
-    box-shadow: 2px 3px 6px rgba(36, 25, 138, 0.534) ;
+  padding: 20px;
+  background-color: #faddc6e5;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 .temp-details {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 .temp-details p {
-    color:darkslateblue;
-    text-align: center;
+  color: #333;
+  text-align: center;
 }
 .desc {
-    font-weight: 500;
-    font-size: 18px;
+  font-weight: 500;
+  font-size: 18px;
 }
 .temp-details > .icon {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .temp-details .temp {
-    font-size: 50px;
-    display: flex;
-    flex-direction: column;
-    color: rgb(101, 28, 170);
+  font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  color: #ff5805;
 }
 .min-max {
-    font-size: 15px;
-    font-weight: 400;
-    margin: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  margin: 10px;
 }
 .temp-details .material-icons {
-    padding-left: 3px;
-    color: #431b83;
-    font-size: 18px
+  padding-left: 3px;
+  color: #4caf50;
+  font-size: 18px;
 }
 .icon {
-    margin: 5px 0;
-    border-radius: 60px;
-    background-color: #005eec11;
+  margin: 5px 0;
+  border-radius: 60px;
+  background-color: #005eec11;
 }
 
-@media screen and (max-width:500px) {
-    #weather-cards {
-        grid-template-columns: repeat(1, 1fr);
-    }
+/* Small screens (max-width: 500px) */
+@media screen and (max-width: 500px) {
+  #weather-cards {
+    grid-template-columns: 1fr;
+  }
 }
-@media screen and (min-width:500px) and (max-width:700px) {
-    #weather-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
+
+/* Medium screens (501px to 700px) */
+@media screen and (min-width: 501px) and (max-width: 700px) {
+  #weather-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
-@media screen and (min-width:700px) and (max-width:1090px) {
-    #weather-cards {
-        grid-template-columns: repeat(3, 33.33%);
-    }
+
+/* Large screens (701px to 1090px) */
+@media screen and (min-width: 701px) and (max-width: 1090px) {
+  #weather-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-@media screen and (min-width:1090px) {
-    #weather-cards {
-        grid-template-columns: repeat(4, 1fr);
-    }
+
+/* Extra-large screens (min-width: 1091px) */
+@media screen and (min-width: 1091px) {
+  #weather-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
